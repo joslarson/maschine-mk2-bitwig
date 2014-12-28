@@ -1,0 +1,60 @@
+const GROUPS = [80, 81, 82, 83, 90, 91, 92, 93];
+
+const PADS = [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51];
+
+const KNOBS = {
+    // SCREEN PAGES
+    VOL_KNOBS: [14, 15, 16, 17, 18, 19, 20, 21],
+    PAN_KNOBS: [22, 23, 24, 25, 26, 27, 28, 29],
+    MACRO_KNOBS: [30, 31, 32, 33, 34, 35, 36, 37],
+    PARAM_KNOBS: [38, 39, 40, 41, 42, 43, 44, 45],
+
+    // MASTER SECTION
+    MASTER: 101,
+}
+
+const BUTTONS = {
+    // UPPER LEFT
+    CONTROL: 85,
+    STEP: 86,
+    BROWSE: 87,
+    SAMPLING: 88,
+    ALL: 89,
+    AUTO_WRITE: 90,
+
+    // SCREEN PAGES
+    ARM: [46, 47, 48, 49, 50, 51, 52, 53],
+    PREV_DEVICE: 54,
+    NEXT_DEVICE: 57,
+    PREV_PARAM_BANK: 58,
+    NEXT_PARAM_BANK: 61,
+
+    // MASTER SECTION
+    VOLUME: 7,
+    SWING: 9,
+    TEMPO: 3,
+    NOTE_REPEAT: 111,
+    MASTER_KNOB: 102,
+    MASTER_LEFT: 98,
+    MASTER_RIGHT: 99,
+    ENTER: 100,
+
+    // PADS SECTION
+    SCENE: 112,
+    PATTERN: 113,
+    PAD_MODE: 114,
+    NAVIGATE: 115,
+    DUPLICATE: 116,
+    SELECT: 117,
+    SOLO: 118,
+    MUTE: 119,
+
+    // TRANSPORT SECTION
+    RESTART: 104,
+    TRANSPORT_LEFT: 105,
+    TRANSPORT_RIGHT: 106,
+    GRID: 107,
+    PLAY: 108,
+    REC: 109,
+    ERASE: 110,
+}
