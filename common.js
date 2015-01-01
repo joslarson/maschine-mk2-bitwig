@@ -17,12 +17,13 @@ function isInArray(array, searchValue) {
 function getCcList(ctrlSection) {
     var ccList = [];
     var keys = Object.keys(ctrlSection);
-    for (var i = keys.length - 1; i >= 0; i--) {
+    // println(keys);
+    for (var i = 0; i < keys.length; i++) {
         var node = ctrlSection[keys[i]];
         if(typeof(node) === 'number'){
             ccList.push(node);
         } else {
-            return ccList.concat(getCcList(node));
+            ccList = ccList.concat(getCcList(node));
         }
     };
     return ccList;
@@ -30,6 +31,10 @@ function getCcList(ctrlSection) {
 
 function isCc(status) {
     return (status & 0xf0) == 0xb0;
+}
+
+function isNote(status) {
+    return ((status & 0xf0) == 0x80) || ((status & 0xf0) == 0x90);
 }
 
 function rgb2hsb(r, g, b) {
@@ -65,6 +70,8 @@ function rgb2hsb(r, g, b) {
     result.h = Math.floor (result.h * 127.0 / 360.0);
     result.s = Math.floor ((1 - Math.pow (1 - result.s, 2)) * 127.0);
     result.b = Math.floor (result.b * 127.0);
+
+    result.off = result['b'] == 0;
  
     return result;
 }

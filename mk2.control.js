@@ -19,11 +19,18 @@ host.addDeviceNameBasedDiscoveryPair(['Maschine MK2 In'], ['Maschine MK2 Out']);
 host.addDeviceNameBasedDiscoveryPair(['Maschine MK2 Virtual Input'], ['Maschine MK2 Virtual Output']);
 
 function onMidi(status, data1, data2) {
+    // println(status + ', ' + data1 + ', ' + data2 + ': ' + isNote(status));
     if(isCc(status)){
         if(sections.transport.handles(status, data1, data2)){
             sections.transport.onMidi(status, data1, data2);
         } else if(sections.groups.handles(status, data1, data2)){
             sections.groups.onMidi(status, data1, data2);
+        } else if(sections.screens.handles(status, data1, data2)){
+            sections.screens.onMidi(status, data1, data2);
+        }
+    } else if(isNote(status)){
+        if(sections.pads.handles(status, data1, data2)){
+            sections.pads.onMidi(status, data1, data2);
         }
     }
 }
@@ -40,6 +47,8 @@ function init() {
 
     sections.transport = new TransportSection();
     sections.groups = new GroupsSection();
+    sections.screens = new ScreensSection();
+    sections.pads = new PadsSection();
     // sections.transport.init();
     // sections.groups.init();
 
