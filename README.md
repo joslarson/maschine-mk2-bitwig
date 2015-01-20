@@ -1,7 +1,7 @@
 maschine-mk2-bitwig
 ====================
 
-Custom Bitwig controller script for Native Instruments Maschine MK2.
+Custom Bitwig controller script for Native Instruments Maschine MK2. Not yet functional. Below is a list of possible planned feature set. DO NOT use this yet.
 
 SHIFT = `[ENTER]`
 
@@ -31,7 +31,7 @@ Pattern mode is current tracks next 16 relative clips
 
 S/M/R
 
-## GLOBAL CONTROLS (Some Exceptions)
+### GLOBAL CONTROLS (Some Exceptions)
 - ENTER           : Shift Modifier
 - GROUPS          : Relative track
     - dimmed track color
@@ -70,7 +70,7 @@ S/M/R
 - ERASE+PAD     : DELETE Clip
 
 
-## STEP MODE 
+### STEP MODE 
 - GROUPS        : Relative step page
 - SHIFT+GROUPS  : Select step page group
 - PADS          : Step sequencer, colors fade based on velocity
@@ -78,7 +78,7 @@ S/M/R
 - SELECT+GROUPS : Choose relative track (+SHIFT : track page)
 
 
-## KNOB(CC14-CC45) & BUTTON(CC46-CC77) PAGES
+### KNOB(CC14-CC45) & BUTTON(CC46-CC77) PAGES
 - VOL   (CC14-CC21) / ARM TRACK (CC46-CC53)
 - PAN   (CC22-CC29) / ARM TRACK (CC46-CC53)
 - MACROS(CC30-CC37) / DEVICE < >(CC54,CC57) / PARAM BANK < >(CC58,CC61)
