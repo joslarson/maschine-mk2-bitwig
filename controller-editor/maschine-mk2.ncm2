@@ -51,7 +51,7 @@
         <channel>15</channel>
         <off>0</off>
         <on>127</on>
-        <behavior onIfDown="on">toggle</behavior>
+        <behavior onIfDown="on">gate</behavior>
         <reaction>ondown</reaction>
       </button>
       <button id="Enter" version="1">
@@ -403,7 +403,7 @@
         <channel>15</channel>
         <off>0</off>
         <on>127</on>
-        <behavior onIfDown="on">toggle</behavior>
+        <behavior onIfDown="on">gate</behavior>
         <reaction>ondown</reaction>
       </button>
       <button id="Navigate" version="1">
@@ -411,7 +411,7 @@
         <channel>15</channel>
         <off>0</off>
         <on>127</on>
-        <behavior onIfDown="on">toggle</behavior>
+        <behavior onIfDown="on">gate</behavior>
         <reaction>ondown</reaction>
       </button>
       <button id="NoteRep" version="1">
@@ -419,7 +419,7 @@
         <channel>15</channel>
         <off>0</off>
         <on>127</on>
-        <behavior onIfDown="on">toggle</behavior>
+        <behavior onIfDown="on">gate</behavior>
         <reaction>ondown</reaction>
       </button>
       <button id="PadMode" version="1">
@@ -427,7 +427,7 @@
         <channel>15</channel>
         <off>0</off>
         <on>127</on>
-        <behavior onIfDown="on">toggle</behavior>
+        <behavior onIfDown="on">gate</behavior>
         <reaction>ondown</reaction>
       </button>
       <button id="Pattern" version="1">
@@ -467,7 +467,7 @@
         <channel>15</channel>
         <off>0</off>
         <on>127</on>
-        <behavior onIfDown="on">toggle</behavior>
+        <behavior onIfDown="on">gate</behavior>
         <reaction>ondown</reaction>
       </button>
       <button id="Sampling" version="1">
@@ -491,7 +491,7 @@
         <channel>15</channel>
         <off>0</off>
         <on>127</on>
-        <behavior onIfDown="on">toggle</behavior>
+        <behavior onIfDown="on">gate</behavior>
         <reaction>ondown</reaction>
       </button>
       <button id="Solo" version="1">
@@ -499,7 +499,7 @@
         <channel>15</channel>
         <off>0</off>
         <on>127</on>
-        <behavior onIfDown="on">toggle</behavior>
+        <behavior onIfDown="on">gate</behavior>
         <reaction>ondown</reaction>
       </button>
       <button id="Step" version="1">
@@ -515,7 +515,7 @@
         <channel>15</channel>
         <off>0</off>
         <on>127</on>
-        <behavior onIfDown="on">toggle</behavior>
+        <behavior onIfDown="on">gate</behavior>
         <reaction>ondown</reaction>
       </button>
       <button id="StepR" version="1">
@@ -523,7 +523,7 @@
         <channel>15</channel>
         <off>0</off>
         <on>127</on>
-        <behavior onIfDown="on">toggle</behavior>
+        <behavior onIfDown="on">gate</behavior>
         <reaction>ondown</reaction>
       </button>
       <button id="Swing" version="1">
@@ -552,7 +552,7 @@
       </button>
     </controls>
     <pages>
-      <current_index>1</current_index>
+      <current_index>0</current_index>
       <page name="TRACK ARM &amp; VOL">
         <button id="Button1" version="1">
           <name>  ARM  | A</name>
@@ -1214,7 +1214,8 @@
       <current_index>0</current_index>
       <group color-index="9" name="PADS">
         <pad id="Pad1" subtype="trigger" version="1">
-          <note>36</note>
+          <name>C2</name>
+          <note>48</note>
           <channel>9</channel>
           <min>0</min>
           <max>127</max>
@@ -1223,7 +1224,8 @@
           <reaction>ondown</reaction>
         </pad>
         <pad id="Pad10" subtype="trigger" version="1">
-          <note>45</note>
+          <name>A2</name>
+          <note>57</note>
           <channel>9</channel>
           <min>0</min>
           <max>127</max>
@@ -1235,7 +1237,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>45</note>
+          <note>57</note>
           <channel>2</channel>
           <min>0</min>
           <max>127</max>
@@ -1245,7 +1247,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>45</note>
+          <note>57</note>
           <channel>0</channel>
           <min>0</min>
           <max>127</max>
@@ -1255,14 +1257,15 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>45</note>
+          <note>57</note>
           <channel>1</channel>
           <min>0</min>
           <max>127</max>
           <default>0</default>
         </led>
         <pad id="Pad11" subtype="trigger" version="1">
-          <note>46</note>
+          <name>A#2</name>
+          <note>58</note>
           <channel>9</channel>
           <min>0</min>
           <max>127</max>
@@ -1274,7 +1277,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>46</note>
+          <note>58</note>
           <channel>2</channel>
           <min>0</min>
           <max>127</max>
@@ -1284,7 +1287,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>46</note>
+          <note>58</note>
           <channel>0</channel>
           <min>0</min>
           <max>127</max>
@@ -1294,14 +1297,15 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>46</note>
+          <note>58</note>
           <channel>1</channel>
           <min>0</min>
           <max>127</max>
           <default>0</default>
         </led>
         <pad id="Pad12" subtype="trigger" version="1">
-          <note>47</note>
+          <name>B2</name>
+          <note>59</note>
           <channel>9</channel>
           <min>0</min>
           <max>127</max>
@@ -1313,7 +1317,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>47</note>
+          <note>59</note>
           <channel>2</channel>
           <min>0</min>
           <max>127</max>
@@ -1323,7 +1327,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>47</note>
+          <note>59</note>
           <channel>0</channel>
           <min>0</min>
           <max>127</max>
@@ -1333,14 +1337,15 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>47</note>
+          <note>59</note>
           <channel>1</channel>
           <min>0</min>
           <max>127</max>
           <default>0</default>
         </led>
         <pad id="Pad13" subtype="trigger" version="1">
-          <note>48</note>
+          <name>C3</name>
+          <note>60</note>
           <channel>9</channel>
           <min>0</min>
           <max>127</max>
@@ -1352,7 +1357,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>48</note>
+          <note>60</note>
           <channel>2</channel>
           <min>0</min>
           <max>127</max>
@@ -1362,7 +1367,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>48</note>
+          <note>60</note>
           <channel>0</channel>
           <min>0</min>
           <max>127</max>
@@ -1372,14 +1377,15 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>48</note>
+          <note>60</note>
           <channel>1</channel>
           <min>0</min>
           <max>127</max>
           <default>0</default>
         </led>
         <pad id="Pad14" subtype="trigger" version="1">
-          <note>49</note>
+          <name>C#3</name>
+          <note>61</note>
           <channel>9</channel>
           <min>0</min>
           <max>127</max>
@@ -1391,7 +1397,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>49</note>
+          <note>61</note>
           <channel>2</channel>
           <min>0</min>
           <max>127</max>
@@ -1401,7 +1407,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>49</note>
+          <note>61</note>
           <channel>0</channel>
           <min>0</min>
           <max>127</max>
@@ -1411,14 +1417,15 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>49</note>
+          <note>61</note>
           <channel>1</channel>
           <min>0</min>
           <max>127</max>
           <default>0</default>
         </led>
         <pad id="Pad15" subtype="trigger" version="1">
-          <note>50</note>
+          <name>D3</name>
+          <note>62</note>
           <channel>9</channel>
           <min>0</min>
           <max>127</max>
@@ -1430,7 +1437,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>50</note>
+          <note>62</note>
           <channel>2</channel>
           <min>0</min>
           <max>127</max>
@@ -1440,7 +1447,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>50</note>
+          <note>62</note>
           <channel>0</channel>
           <min>0</min>
           <max>127</max>
@@ -1450,14 +1457,15 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>50</note>
+          <note>62</note>
           <channel>1</channel>
           <min>0</min>
           <max>127</max>
           <default>0</default>
         </led>
         <pad id="Pad16" subtype="trigger" version="1">
-          <note>51</note>
+          <name>D#3</name>
+          <note>63</note>
           <channel>9</channel>
           <min>0</min>
           <max>127</max>
@@ -1469,7 +1477,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>51</note>
+          <note>63</note>
           <channel>2</channel>
           <min>0</min>
           <max>127</max>
@@ -1479,7 +1487,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>51</note>
+          <note>63</note>
           <channel>0</channel>
           <min>0</min>
           <max>127</max>
@@ -1489,7 +1497,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>51</note>
+          <note>63</note>
           <channel>1</channel>
           <min>0</min>
           <max>127</max>
@@ -1499,7 +1507,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>36</note>
+          <note>48</note>
           <channel>2</channel>
           <min>0</min>
           <max>127</max>
@@ -1509,7 +1517,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>36</note>
+          <note>48</note>
           <channel>0</channel>
           <min>0</min>
           <max>127</max>
@@ -1519,14 +1527,15 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>36</note>
+          <note>48</note>
           <channel>1</channel>
           <min>0</min>
           <max>127</max>
           <default>0</default>
         </led>
         <pad id="Pad2" subtype="trigger" version="1">
-          <note>37</note>
+          <name>C#2</name>
+          <note>49</note>
           <channel>9</channel>
           <min>0</min>
           <max>127</max>
@@ -1538,7 +1547,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>37</note>
+          <note>49</note>
           <channel>2</channel>
           <min>0</min>
           <max>127</max>
@@ -1548,7 +1557,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>37</note>
+          <note>49</note>
           <channel>0</channel>
           <min>0</min>
           <max>127</max>
@@ -1558,14 +1567,15 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>37</note>
+          <note>49</note>
           <channel>1</channel>
           <min>0</min>
           <max>127</max>
           <default>0</default>
         </led>
         <pad id="Pad3" subtype="trigger" version="1">
-          <note>38</note>
+          <name>D2</name>
+          <note>50</note>
           <channel>9</channel>
           <min>0</min>
           <max>127</max>
@@ -1577,7 +1587,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>38</note>
+          <note>50</note>
           <channel>2</channel>
           <min>0</min>
           <max>127</max>
@@ -1587,7 +1597,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>38</note>
+          <note>50</note>
           <channel>0</channel>
           <min>0</min>
           <max>127</max>
@@ -1597,14 +1607,15 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>38</note>
+          <note>50</note>
           <channel>1</channel>
           <min>0</min>
           <max>127</max>
           <default>0</default>
         </led>
         <pad id="Pad4" subtype="trigger" version="1">
-          <note>39</note>
+          <name>D#2</name>
+          <note>51</note>
           <channel>9</channel>
           <min>0</min>
           <max>127</max>
@@ -1616,7 +1627,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>39</note>
+          <note>51</note>
           <channel>2</channel>
           <min>0</min>
           <max>127</max>
@@ -1626,7 +1637,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>39</note>
+          <note>51</note>
           <channel>0</channel>
           <min>0</min>
           <max>127</max>
@@ -1636,14 +1647,15 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>39</note>
+          <note>51</note>
           <channel>1</channel>
           <min>0</min>
           <max>127</max>
           <default>0</default>
         </led>
         <pad id="Pad5" subtype="trigger" version="1">
-          <note>40</note>
+          <name>E2</name>
+          <note>52</note>
           <channel>9</channel>
           <min>0</min>
           <max>127</max>
@@ -1655,7 +1667,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>40</note>
+          <note>52</note>
           <channel>2</channel>
           <min>0</min>
           <max>127</max>
@@ -1665,7 +1677,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>40</note>
+          <note>52</note>
           <channel>0</channel>
           <min>0</min>
           <max>127</max>
@@ -1675,14 +1687,15 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>40</note>
+          <note>52</note>
           <channel>1</channel>
           <min>0</min>
           <max>127</max>
           <default>0</default>
         </led>
         <pad id="Pad6" subtype="trigger" version="1">
-          <note>41</note>
+          <name>F2</name>
+          <note>53</note>
           <channel>9</channel>
           <min>0</min>
           <max>127</max>
@@ -1694,7 +1707,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>41</note>
+          <note>53</note>
           <channel>2</channel>
           <min>0</min>
           <max>127</max>
@@ -1704,7 +1717,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>41</note>
+          <note>53</note>
           <channel>0</channel>
           <min>0</min>
           <max>127</max>
@@ -1714,14 +1727,15 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>41</note>
+          <note>53</note>
           <channel>1</channel>
           <min>0</min>
           <max>127</max>
           <default>0</default>
         </led>
         <pad id="Pad7" subtype="trigger" version="1">
-          <note>42</note>
+          <name>F#2</name>
+          <note>54</note>
           <channel>9</channel>
           <min>0</min>
           <max>127</max>
@@ -1733,7 +1747,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>42</note>
+          <note>54</note>
           <channel>2</channel>
           <min>0</min>
           <max>127</max>
@@ -1743,7 +1757,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>42</note>
+          <note>54</note>
           <channel>0</channel>
           <min>0</min>
           <max>127</max>
@@ -1753,14 +1767,15 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>42</note>
+          <note>54</note>
           <channel>1</channel>
           <min>0</min>
           <max>127</max>
           <default>0</default>
         </led>
         <pad id="Pad8" subtype="trigger" version="1">
-          <note>43</note>
+          <name>G2</name>
+          <note>55</note>
           <channel>9</channel>
           <min>0</min>
           <max>127</max>
@@ -1772,7 +1787,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>43</note>
+          <note>55</note>
           <channel>2</channel>
           <min>0</min>
           <max>127</max>
@@ -1782,7 +1797,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>43</note>
+          <note>55</note>
           <channel>0</channel>
           <min>0</min>
           <max>127</max>
@@ -1792,14 +1807,15 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>43</note>
+          <note>55</note>
           <channel>1</channel>
           <min>0</min>
           <max>127</max>
           <default>0</default>
         </led>
         <pad id="Pad9" subtype="trigger" version="1">
-          <note>44</note>
+          <name>G#2</name>
+          <note>56</note>
           <channel>9</channel>
           <min>0</min>
           <max>127</max>
@@ -1811,7 +1827,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>44</note>
+          <note>56</note>
           <channel>2</channel>
           <min>0</min>
           <max>127</max>
@@ -1821,7 +1837,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>44</note>
+          <note>56</note>
           <channel>0</channel>
           <min>0</min>
           <max>127</max>
@@ -1831,7 +1847,7 @@
           <display type="0">
             <unit color-mode="2" color-off-index="1" color-on-index="2" color-type="1"/>
           </display>
-          <note>44</note>
+          <note>56</note>
           <channel>1</channel>
           <min>0</min>
           <max>127</max>

@@ -1,8 +1,8 @@
 function toggleBtn(button, test){
     if(test){
-        midiOut.sendMidi(0xb0, button, 127);
+        midiOut.sendMidi(0xbf, button, 127);
     } else {
-        midiOut.sendMidi(0xb0, button, 0);
+        midiOut.sendMidi(0xbf, button, 0);
     }
 }
 
@@ -70,8 +70,6 @@ function rgb2hsb(r, g, b) {
     result.h = Math.floor (result.h * 127.0 / 360.0);
     result.s = Math.floor ((1 - Math.pow (1 - result.s, 2)) * 127.0);
     result.b = Math.floor (result.b * 127.0);
-
-    result.off = result['b'] == 0;
  
     return result;
 }

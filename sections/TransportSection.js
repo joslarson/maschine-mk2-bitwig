@@ -1,5 +1,5 @@
 var TransportSection = function(){
-    transport.addIsPlayingObserver(function(isPlaying){
+    bitwig.transport.addIsPlayingObserver(function(isPlaying){
         toggleBtn(CTRL.TRANSPORT.PLAY, isPlaying);
     });
 };
@@ -17,9 +17,9 @@ TransportSection.prototype.onMidi = function(status, data1, data2) {
 
     if (data1 == CTRL.TRANSPORT.PLAY) {
         if(pressed){
-            transport.play();
+            bitwig.transport.play();
         } else {
-            transport.stop();
+            bitwig.transport.stop();
         }
     }
 };

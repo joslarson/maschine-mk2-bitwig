@@ -4,13 +4,16 @@ loadAPI(1);
 
 /* Script Initilization */
 
-var transport, application, trackCount;
+var bitwig, midiOut, transport, application, trackCount;
+
 var sections = [];
 
 load('config.js');
 load('common.js');
-load('sections/loader.js');
-load('views/loader.js');
+load('bitwig/_loader.js');
+load('sections/_loader.js');
+load('views/_loader.js');
+
 
 host.defineController("Native Instruments", "Maschine MK2 Custom", "1.0", "9CC361A0-8D39-11E4-B4A9-0800200C9A66");
 // Setup and Discover Midi Device
@@ -36,11 +39,10 @@ function onMidi(status, data1, data2) {
 }
 
 function init() {
-    transport = host.createTransportSection();
-    application = host.createApplicationSection();
-    trackbank = host.createMainTrackBank(8,0,16);
-
+    bitwig = new Bitwig();
     midiOut = host.getMidiOutPort(0);
+
+    blankController();
 
     host.getMidiInPort(0).createNoteInput("Maschine Pad Mode", "80????", "90????", "B040??", "D0????", "E0????");
     host.getMidiInPort(0).setMidiCallback(onMidi);
@@ -49,12 +51,36 @@ function init() {
     sections.groups = new GroupsSection();
     sections.screens = new ScreensSection();
     sections.pads = new PadsSection();
-    // sections.transport.init();
-    // sections.groups.init();
 
     println("Maschine MK2 script");
 }
 
 function exit() {
-    // TODO: Reset controller
+    blankController();
+}
+
+function blankController(){
+    var basicCtrls = getCcList(CTRL);
+    var coloredCtrls = basicCtrls.splice(
+        basicCtrls.indexOf(CTRL.PADS[0]), 
+        CTRL.PADS.length
+    ).concat(basicCtrls.splice(
+        basicCtrls.indexOf(CTRL.GROUPS[0]), 
+        CTRL.GROUPS.length
+    ));
+    var panKnobs = basicCtrls.splice(
+        basicCtrls.indexOf(CTRL.SCREENS.PAN[0]), 
+        CTRL.SCREENS.PAN.length
+    );
+    for (var i = 0; i < basicCtrls.length; i++) {
+        midiOut.sendMidi(0xbf, basicCtrls[i], 0);
+    };
+    for (var i = 0; i < coloredCtrls.length; i++) {
+        midiOut.sendMidi(0xb2, coloredCtrls[i], 0);
+        midiOut.sendMidi(0xb1, coloredCtrls[i], 0);
+        midiOut.sendMidi(0xb0, coloredCtrls[i], 0);
+    };
+    for (var i = 0; i < panKnobs.length; i++) {
+        midiOut.sendMidi(0xbf, panKnobs[i], 63);
+    };
 }
