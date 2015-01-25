@@ -4,7 +4,7 @@ loadAPI(1);
 
 /* Script Initilization */
 
-var bitwig, midiOut, transport, application, trackCount;
+var bitwig, midiOut, padNotes, padMIDITable;
 
 var sections = [];
 
@@ -30,6 +30,8 @@ function onMidi(status, data1, data2) {
             sections.groups.onMidi(status, data1, data2);
         } else if(sections.screens.handles(status, data1, data2)){
             sections.screens.onMidi(status, data1, data2);
+        } else if(sections.middle.handles(status, data1, data2)){
+            sections.middle.onMidi(status, data1, data2);
         }
     } else if(isNote(status)){
         if(sections.pads.handles(status, data1, data2)){
@@ -44,13 +46,19 @@ function init() {
 
     blankController();
 
-    host.getMidiInPort(0).createNoteInput("Maschine Pad Mode", "80????", "90????", "B040??", "D0????", "E0????");
+    padNotes = host.getMidiInPort(0).createNoteInput("Maschine Pads", "89????", "99????", "B940??", "D9????", "E9????");
+    padNotes.setShouldConsumeEvents(false);
+    padMIDITable = {
+        ON: initCountingArray(0,128),
+        OFF: initArray(-1,128)
+    };
     host.getMidiInPort(0).setMidiCallback(onMidi);
 
     sections.transport = new TransportSection();
     sections.groups = new GroupsSection();
     sections.screens = new ScreensSection();
     sections.pads = new PadsSection();
+    sections.middle = new MiddleSection();
 
     println("Maschine MK2 script");
 }

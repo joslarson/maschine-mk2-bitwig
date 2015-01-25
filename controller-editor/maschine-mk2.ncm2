@@ -67,7 +67,7 @@
         <channel>15</channel>
         <off>0</off>
         <on>127</on>
-        <behavior onIfDown="on">toggle</behavior>
+        <behavior onIfDown="on">gate</behavior>
         <reaction>ondown</reaction>
       </button>
       <button id="Grid" version="1">
@@ -75,7 +75,7 @@
         <channel>15</channel>
         <off>0</off>
         <on>127</on>
-        <behavior onIfDown="on">toggle</behavior>
+        <behavior onIfDown="on">gate</behavior>
         <reaction>ondown</reaction>
       </button>
       <button id="GroupA" version="1">
@@ -427,7 +427,7 @@
         <channel>15</channel>
         <off>0</off>
         <on>127</on>
-        <behavior onIfDown="on">gate</behavior>
+        <behavior>trigger</behavior>
         <reaction>ondown</reaction>
       </button>
       <button id="Pattern" version="1">
@@ -435,7 +435,7 @@
         <channel>15</channel>
         <off>0</off>
         <on>127</on>
-        <behavior onIfDown="on">toggle</behavior>
+        <behavior>trigger</behavior>
         <reaction>ondown</reaction>
       </button>
       <button id="Play" version="1">
@@ -483,7 +483,7 @@
         <channel>15</channel>
         <off>0</off>
         <on>127</on>
-        <behavior>toggle</behavior>
+        <behavior>trigger</behavior>
         <reaction>ondown</reaction>
       </button>
       <button id="Select" version="1">

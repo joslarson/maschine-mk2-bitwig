@@ -61,11 +61,24 @@ const CTRL = {
         MUTE: 119,
     },
 
-    PADS: [48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63],
+    PADS: [36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51],
 };
 
 const CONFIG = {
-    DIM_VALUE: 10,
+    DIM_VALUE: 20,
     GROUP_COUNT: 8,
     PAD_COUNT: 16,
 };
+
+var MOD = {
+    SHIFT: false,
+    NAVIGATE: false, 
+    DUPLICATE: false, 
+    SELECT: false, 
+    SOLO: false, 
+    MUTE: false,
+    GRID: false, // mod for pad grid undo, redo, quantize, etc
+    ERASE: false
+}
+
+var CLIPBOARD = null

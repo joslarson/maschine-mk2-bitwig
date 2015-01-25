@@ -12,57 +12,47 @@ var GroupsSection = function(){
     for (var i = 0; i < CONFIG.GROUP_COUNT; i++) {
         (function(){
             const trackIndex = i;
+            var track = bitwig.trackbankPage.tracks[trackIndex];
             bitwig.trackbank.getChannel(trackIndex).addIsSelectedInMixerObserver(function(isSelected){
-                var track = bitwig.trackbankPage.tracks[trackIndex];
-                var selectedTrackIndex = bitwig.trackbankPage.selectedTrackIndex;
-                var data2 = CTRL.GROUPS[trackIndex];
-
-                that.refreshTrackBankButton(trackIndex, isSelected);
+                that.sendGroupColor(trackIndex, track.getColor());
             });
             bitwig.trackbank.getChannel(trackIndex).addColorObserver(function(r, g, b){
-                that.refreshTrackBankButton(trackIndex);
+                that.sendGroupColor(trackIndex, track.getColor());
             });
         })();
     }
 };
 
-GroupsSection.prototype.refreshTrackBankButton = function(index, isSelected) {
-    isSelected = isSelected != undefined ? isSelected : index == bitwig.trackbankPage.selectedTrackIndex;
-    
-    var track = bitwig.trackbankPage.tracks[index];
-    var data2 = CTRL.GROUPS[index];
-    
-    // Set color if it is available
-    if(track.color){
-        midiOut.sendMidi(0xb0, data2, track.color.h);
-        midiOut.sendMidi(0xb1, data2, track.color.s);
-    }
-    // Handle brightness changes to group buttons during selection
-    if(isSelected){
-        midiOut.sendMidi(0xb2, data2, 127);
-    } else if(!track.exists){
-        midiOut.sendMidi(0xb2, data2, 0);
-    } else {
-        midiOut.sendMidi(0xb2, data2, CONFIG.DIM_VALUE);
-    }
+GroupsSection.prototype.sendGroupColor = function(index, hsb) {
+    midiOut.sendMidi(0xb0, CTRL.GROUPS[index], hsb.h);
+    midiOut.sendMidi(0xb1, CTRL.GROUPS[index], hsb.s);
+    midiOut.sendMidi(0xb2, CTRL.GROUPS[index], hsb.b);
 };
 
 GroupsSection.prototype.refreshTrackBankButtons = function() {
     for (var i = 0; i < CONFIG.GROUP_COUNT; i++) {
-        this.refreshTrackBankButton(i);
+        var track = bitwig.trackbankPage.tracks[i];
+        this.sendGroupColor(i, track.getColor());
     };
 };
 
 GroupsSection.prototype.handles = function(status, data1, data2) {
-    if(isInArray(getCcList(CTRL.GROUPS), data1) && status == 0xbf){
-        return true;
-    } else {
-        return false;
-    }
+    return isInArray(getCcList(CTRL.GROUPS), data1) && status == 0xbf;
 };
 
 GroupsSection.prototype.onMidi = function(status, data1, data2) {
     var pressed = data2 >= 0x3F;
-    var track = CTRL.GROUPS.indexOf(data1);
-    bitwig.trackbank.getChannel(track).selectInMixer();
+    var track = bitwig.trackbank.getChannel(CTRL.GROUPS.indexOf(data1));
+    dump(track)
+
+    if(pressed){
+        bitwig.application.selectNone();
+        track.select();
+
+        if(MOD.DUPLICATE){
+            bitwig.application.duplicate();
+        } else if(MOD.ERASE){
+            bitwig.application.remove();
+        }
+    }
 };

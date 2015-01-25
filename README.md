@@ -20,6 +20,7 @@ SHIFT MODE    : `[SHIFT]`+`[MISC]`
 * VOL + ARM
 * PAN + ARM
 
+Idea: BROWSE could be device mode where you navigate through devices using the pads?
 
 Groups select tracks reatively
 
@@ -42,6 +43,7 @@ S/M/R
 - MUTE+GROUP      : MUTE Track
 - SOLO+GROUP      : SOLO Track
 - ERASE+GROUP     : DELETE Track
+- 1st empty GROUP : new inst track (+SHIFT for audio track)
 
 ## DEFAULT MODE
 - PADS            : Send midi notes to current track

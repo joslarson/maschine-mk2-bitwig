@@ -1,9 +1,10 @@
 var Bitwig = function(){
     var that = this;
 
-    this.application = host.createApplicationSection();
-    this.transport = host.createTransportSection();
+    this.application = host.createApplication();
+    this.transport = host.createTransport();
     this.trackbank = host.createMainTrackBank(CONFIG.GROUP_COUNT,0,CONFIG.PAD_COUNT);
+    this.scenebank = host.createSceneBank(CONFIG.PAD_COUNT)
     
     this.totalTrackCount = 0;
     
@@ -12,7 +13,10 @@ var Bitwig = function(){
         pageTrackCount: 0,
         selectedTrackIndex: null,
         tracks: [],
+        scenes: []
     };
+
+    this.transportIsPlaying = false;
 
     // initialize bitwig object
 
@@ -28,9 +32,15 @@ var Bitwig = function(){
         that.resetTrackExistsFlags();
     });
 
+    for (var i = 0; i < CONFIG.PAD_COUNT; i++) {
+        this.trackbankPage.scenes[i] = new Scene();
+    }
+ 
     for (var i = 0; i < CONFIG.GROUP_COUNT; i++) {
         // init track list
-        that.trackbankPage.tracks[i] = new Track();
+        if(that.trackbankPage.tracks[i] == undefined){
+            that.trackbankPage.tracks[i] = new Track();
+        }
 
         (function(){ // enclosure
             const trackIndex = i;
@@ -40,37 +50,50 @@ var Bitwig = function(){
             that.trackbank.getChannel(trackIndex).addIsSelectedInMixerObserver(
                 function(isSelected){
                     // if no track is selected, set selectedTrackIndex to null
-                    if(trackIndex == that.trackbankPage.selectedTrackIndex && !isSelected) {
-                        that.trackbankPage.selectedTrackIndex = null;
-                    }
                     if(isSelected){
                         that.trackbankPage.tracks[trackIndex].isSelected = true;
                         that.trackbankPage.selectedTrackIndex = trackIndex;
                     } else {
-                        that.trackbankPage.tracks[trackIndex].isSelected = false;
+                        var page = that.trackbankPage;
+                        if(trackIndex == page.selectedTrackIndex) page.selectedTrackIndex = null;
+                        track.isSelected = false;
                     }
                 }
             );
 
             that.trackbank.getChannel(trackIndex).addColorObserver(function(r, g, b){
                 var hsb = rgb2hsb(r, g, b);
-                that.trackbankPage.tracks[trackIndex].color = hsb;
+                that.trackbankPage.tracks[trackIndex].hsb = hsb;
             });
 
             trackClipSlots.addHasContentObserver(function(index, hasContent){
-                if(track.clips[index] == null) track.clips[index] = new Clip();
+                var scene = that.trackbankPage.scenes[index];
+                // println(trackIndex + ':' + index + ' ' + hasContent);
+                // adds clips to tracks and scenes upon init
+                if(track.clips[index] == undefined) track.clips[index] = new Clip();
+                if(scene.clips[trackIndex] == undefined) scene.clips[trackIndex] = track.clips[index];
+
                 track.clips[index].hasContent = hasContent;
+                that.trackbankPage.scenes[index].setHasContent();
             });
 
-            trackClipSlots.addColorObserver(function(index, r, g, b){
-                if(index < CONFIG.PAD_COUNT){
-                    var hsb = rgb2hsb(r,g,b);
-                    // set clip color
-                    track.clips[index].color = hsb;
+            trackClipSlots.addIsQueuedObserver(function(index, isQueued){
+                var scene = that.trackbankPage.scenes[index];
+
+                if(isQueued){
+                    track.queuedClipIndex = index;
+                    track.clips[index].isQueued = true;
+                    that.trackbankPage.scenes[index].setIsQueued();
+                } else {
+                    if(track.queuedClipIndex == index) track.queuedClipIndex = null;
+                    track.clips[index].isQueued = false;
+                    that.trackbankPage.scenes[index].isQueued = false;
                 }
+
             });
 
             trackClipSlots.addIsPlayingObserver(function(index, isPlaying){
+
                 if(isPlaying){
                     track.playingClipIndex = index;
                     track.clips[index].isPlaying = true;
@@ -78,6 +101,45 @@ var Bitwig = function(){
                     if(track.playingClipIndex == index) track.playingClipIndex = null;
                     track.clips[index].isPlaying = false;
                 }
+
+                var scene = that.trackbankPage.scenes[index];
+                that.trackbankPage.scenes[index].setIsPlaying();
+            });
+
+            trackClipSlots.addIsRecordingObserver(function(index, isRecording){
+                if(isRecording){
+                    track.recordingClipIndex = index;
+                    track.clips[index].isRecording = true;
+                } else {
+                    if(track.recordingClipIndex == index) track.recordingClipIndex = null;
+                    track.clips[index].isRecording = false;
+                }
+            });
+
+            trackClipSlots.addIsRecordingQueuedObserver(function(index, isRecordingQueued){
+                if(isRecordingQueued){
+                    track.recordingQueuedClipIndex = index;
+                    track.clips[index].isRecordingQueued = true;
+                } else {
+                    if(track.recordingQueuedClipIndex == index) track.recordingQueuedClipIndex = null;
+                    track.clips[index].isRecordingQueued = false;
+                }
+            });
+
+            trackClipSlots.addIsSelectedObserver(function(index, isSelected){
+                if(isSelected){
+                    track.selectedClipIndex = index;
+                    track.clips[index].isSelected = true;
+                } else {
+                    if(track.selectedClipIndex == index) track.selectedClipIndex = null;
+                    track.clips[index].isSelected = false;
+                }
+            });
+
+            trackClipSlots.addColorObserver(function(index, r, g, b){
+                var hsb = rgb2hsb(r,g,b);
+                // set clip color
+                track.clips[index].hsb = hsb;
             });
         })();
     }

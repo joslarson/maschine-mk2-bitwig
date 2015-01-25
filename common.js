@@ -73,3 +73,12 @@ function rgb2hsb(r, g, b) {
  
     return result;
 }
+
+function initCountingArray(startValue, length) {
+    var arr = [];
+    arr.length = length;
+    for (var x = 0; x < arr.length; x++) {
+        arr[x] = x;
+    }
+    return arr;
+}
