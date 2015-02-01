@@ -43,7 +43,6 @@ GroupsSection.prototype.handles = function(status, data1, data2) {
 GroupsSection.prototype.onMidi = function(status, data1, data2) {
     var pressed = data2 >= 0x3F;
     var track = bitwig.trackbank.getChannel(CTRL.GROUPS.indexOf(data1));
-    dump(track)
 
     if(pressed){
         bitwig.application.selectNone();
