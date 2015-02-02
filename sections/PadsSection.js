@@ -289,10 +289,13 @@ PadsSection.prototype.initPadMode = function() {
                     var color = track.getColor();
                     color.b = 127;
                     that.sendPadColor(padIndex, color);
-                } else {
-                    var color = track.getColor();
-                    color.b = CONFIG.DIM_VALUE;
-                    that.sendPadColor(padIndex, color);
+                    host.scheduleTask(function(){
+                        if(trackIndex == bitwig.trackbankPage.selectedTrackIndex
+                           && that.mode == that.PAD_MODE){
+                            color.b = CONFIG.DIM_VALUE;
+                            that.sendPadColor(padIndex, color);
+                        }
+                    }, null, 40);
                 }
             });
         })();
