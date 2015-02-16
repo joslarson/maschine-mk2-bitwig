@@ -24,31 +24,31 @@ var GroupsSection = function(){
             bitwig.trackbank.getChannel(trackIndex).addNoteObserver(function(isNoteOn, note, velocity){
                 if(track.type == 'Instrument' && isNoteOn){
                     var color = track.getColor();
-                    orig_sat = color.s;
-                    color.s = 80;
+                    var orig_s = color.s;
+                    var orig_b = color.b;
+                    color.s = color.s - parseInt(color.s / 6);
+                    if(trackIndex != bitwig.trackbankPage.selectedTrackIndex){
+                        color.b = CONFIG.DIM_VALUE + parseInt((127 - CONFIG.DIM_VALUE) / 4);
+                    }
                     that.sendGroupColor(trackIndex, color);
                     host.scheduleTask(function(){
-                        color.s = orig_sat;
+                        color.s = orig_s;
+                        color.b = orig_b;
                         that.sendGroupColor(trackIndex, color);
                     }, null, 80);
                 }
             });
 
-            bitwig.trackbank.getChannel(trackIndex).addVuMeterObserver(128, -1, true, function(range){
+            bitwig.trackbank.getChannel(trackIndex).addVuMeterObserver(128, -1, false, function(range){
                 if(track.type == 'Audio'){
                     var color = track.getColor();
-                    range = range < 10 ? 0 : parseInt(color.s * ((range / 175)));
-                    color.s = color.s > 60 ? color.s - range : color.s + range;
+                    range = range < 25 ? 0 : range - 25;
+                    // color.s = color.s > 60 ? color.s - range : color.s + range;
+                    color.s = color.s - parseInt((color.s / 2) * (range / 127));
+                    if(trackIndex != bitwig.trackbankPage.selectedTrackIndex){
+                        color.b = CONFIG.DIM_VALUE + parseInt(((127 - CONFIG.DIM_VALUE) / 1.5) * (range / 127));
+                    }
                     that.sendGroupColor(trackIndex, color);
-                    // var color = track.getColor();
-                    // var selectedTrackIndex = bitwig.trackbankPage.selectedTrackIndex;
-                    // if(trackIndex == selectedTrackIndex){
-                    //     color.b = 127 - parseInt((127 - CONFIG.DIM_VALUE) * (range / 140));
-                    //     that.sendGroupColor(trackIndex, color);
-                    // } else {
-                    //     color.b = CONFIG.DIM_VALUE + parseInt((127 - CONFIG.DIM_VALUE) * (range / 140));
-                    //     that.sendGroupColor(trackIndex, color);
-                    // }
                 }
             });
         })();

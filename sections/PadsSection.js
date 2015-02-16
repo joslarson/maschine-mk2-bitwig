@@ -277,16 +277,14 @@ PadsSection.prototype.initPadMode = function() {
                 var color = track.getColor();
                 color.b = CONFIG.DIM_VALUE;
 
-                for (var ii = 0; ii < CONFIG.PAD_COUNT; ii++) {
-                    if(isSelected){
-                        for (var iii = 0; iii < CONFIG.PAD_COUNT; iii++) {
-                            that.sendPadColor(iii, color);
-                        }
-                    } else if(!isSelected && bitwig.trackbankPage.selectedTrackIndex === null){
-                        // blank pads if nothing is selected
-                        for (var iii = 0; iii < CONFIG.PAD_COUNT; iii++) {
-                            that.sendPadColor(iii, {h:0, s:0, b:0});
-                        }
+                if(isSelected){
+                    for (var ii = 0; ii < CONFIG.PAD_COUNT; ii++) {
+                        that.sendPadColor(ii, color);
+                    }
+                } else if(!isSelected && bitwig.trackbankPage.selectedTrackIndex === null){
+                    // blank pads if nothing is selected
+                    for (var ii = 0; ii < CONFIG.PAD_COUNT; ii++) {
+                        that.sendPadColor(ii, {h:0, s:0, b:0});
                     }
                 }
             });
