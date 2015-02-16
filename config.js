@@ -42,8 +42,8 @@ const CTRL = {
 
     TRANSPORT: {
         RESTART: 104,
-        TRANSPORT_LEFT: 105,
-        TRANSPORT_RIGHT: 106,
+        LEFT: 105,
+        RIGHT: 106,
         GRID: 107,
         PLAY: 108,
         REC: 109,
@@ -77,8 +77,7 @@ var MOD = {
     SELECT: false, 
     SOLO: false, 
     MUTE: false,
-    GRID: false, // mod for pad grid undo, redo, quantize, etc
     ERASE: false
-}
+};
 
-var CLIPBOARD = null
+var CLIPBOARD = null;

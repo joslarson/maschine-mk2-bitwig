@@ -30,6 +30,8 @@ function onMidi(status, data1, data2) {
             sections.groups.onMidi(status, data1, data2);
         } else if(sections.screens.handles(status, data1, data2)){
             sections.screens.onMidi(status, data1, data2);
+        } else if(sections.master.handles(status, data1, data2)){
+            sections.master.onMidi(status, data1, data2);
         } else if(sections.middle.handles(status, data1, data2)){
             sections.middle.onMidi(status, data1, data2);
         }
@@ -57,6 +59,7 @@ function init() {
     sections.transport = new TransportSection();
     sections.groups = new GroupsSection();
     sections.screens = new ScreensSection();
+    sections.master = new MasterSection();
     sections.pads = new PadsSection();
     sections.middle = new MiddleSection();
 
@@ -69,26 +72,29 @@ function exit() {
 
 function blankController(){
     var basicCtrls = getCcList(CTRL);
-    var coloredCtrls = basicCtrls.splice(
-        basicCtrls.indexOf(CTRL.PADS[0]), 
-        CTRL.PADS.length
-    ).concat(basicCtrls.splice(
-        basicCtrls.indexOf(CTRL.GROUPS[0]), 
-        CTRL.GROUPS.length
-    ));
+    
     var panKnobs = basicCtrls.splice(
         basicCtrls.indexOf(CTRL.SCREENS.PAN[0]), 
         CTRL.SCREENS.PAN.length
     );
+    
     for (var i = 0; i < basicCtrls.length; i++) {
         midiOut.sendMidi(0xbf, basicCtrls[i], 0);
-    };
-    for (var i = 0; i < coloredCtrls.length; i++) {
-        midiOut.sendMidi(0xb2, coloredCtrls[i], 0);
-        midiOut.sendMidi(0xb1, coloredCtrls[i], 0);
-        midiOut.sendMidi(0xb0, coloredCtrls[i], 0);
-    };
+    }
+    
+    for (var i = 0; i < CTRL.PADS.length; i++) {
+        midiOut.sendMidi(0x92, CTRL.PADS[i], 0);
+        midiOut.sendMidi(0x91, CTRL.PADS[i], 0);
+        midiOut.sendMidi(0x90, CTRL.PADS[i], 0);
+    }
+
+    for (var i = 0; i < CTRL.GROUPS.length; i++) {
+        midiOut.sendMidi(0xb2, CTRL.GROUPS[i], 0);
+        midiOut.sendMidi(0xb1, CTRL.GROUPS[i], 0);
+        midiOut.sendMidi(0xb0, CTRL.GROUPS[i], 0);
+    }
+
     for (var i = 0; i < panKnobs.length; i++) {
         midiOut.sendMidi(0xbf, panKnobs[i], 63);
-    };
+    }
 }

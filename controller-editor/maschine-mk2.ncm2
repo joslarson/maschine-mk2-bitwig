@@ -443,7 +443,7 @@
         <channel>15</channel>
         <off>0</off>
         <on>127</on>
-        <behavior>toggle</behavior>
+        <behavior>trigger</behavior>
         <reaction>ondown</reaction>
       </button>
       <button id="Push" version="1">
@@ -459,7 +459,7 @@
         <channel>15</channel>
         <off>0</off>
         <on>127</on>
-        <behavior onIfDown="on">toggle</behavior>
+        <behavior>trigger</behavior>
         <reaction>ondown</reaction>
       </button>
       <button id="Restart" version="1">
@@ -552,7 +552,7 @@
       </button>
     </controls>
     <pages>
-      <current_index>0</current_index>
+      <current_index>1</current_index>
       <page name="TRACK ARM &amp; VOL">
         <button id="Button1" version="1">
           <name>  ARM  | A</name>

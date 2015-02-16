@@ -2,9 +2,10 @@ var Bitwig = function(){
     var that = this;
 
     this.application = host.createApplication();
+    this.project = host.getProject();
     this.transport = host.createTransport();
     this.trackbank = host.createMainTrackBank(CONFIG.GROUP_COUNT,0,CONFIG.PAD_COUNT);
-    this.scenebank = host.createSceneBank(CONFIG.PAD_COUNT)
+    this.scenebank = host.createSceneBank(CONFIG.PAD_COUNT);
     
     this.totalTrackCount = 0;
     
@@ -17,8 +18,13 @@ var Bitwig = function(){
     };
 
     this.transportIsPlaying = false;
+    this.tempo = 110;
 
     // initialize bitwig object
+
+    this.transport.getTempo().addRawValueObserver(function(tempo){
+        // println(tempo);
+    });
 
     this.trackbank.addChannelScrollPositionObserver(function(position){
         that.trackbankPage.index = position / CONFIG.GROUP_COUNT;
@@ -46,6 +52,10 @@ var Bitwig = function(){
             const trackIndex = i;
             var track = that.trackbankPage.tracks[trackIndex];
             var trackClipSlots = that.trackbank.getChannel(trackIndex).getClipLauncherSlots();
+
+            that.trackbank.getChannel(trackIndex).addTrackTypeObserver(25, 'Unassigned', function(type){
+                track.type = type; // Unassigned, Instrument, Audio, or Hybrid
+            });
 
             that.trackbank.getChannel(trackIndex).addIsSelectedInMixerObserver(
                 function(isSelected){

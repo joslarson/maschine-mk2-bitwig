@@ -1,4 +1,5 @@
 var Track = function() {
+    this.type = 'unassigned';
     this.exists = false;
     this.isActive = true;
     this.isSelected = false;
@@ -11,7 +12,7 @@ var Track = function() {
     this.recordingClipIndex = null;
     this.recordingQueuedClipIndex = null;
     this.selectedClipIndex = null;
-}
+};
 
 Track.prototype.getColor = function() {
     var hsb = this.hsb;

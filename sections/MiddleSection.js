@@ -3,17 +3,19 @@ var MiddleSection = function(){
 
 MiddleSection.prototype.handles = function(status, data1, data2) {
     return isInArray(getCcList(CTRL.MIDDLE), data1);
-}
+};
 
 MiddleSection.prototype.onMidi = function(status, data1, data2) {
     var pressed = data2 >= 0x3F;
-    
-
 
     if(data1 == CTRL.MIDDLE.SCENE) {
-        sections.pads.setSceneMode();
-        midiOut.sendMidi(0xbf, CTRL.MIDDLE.PATTERN, 0);
-        midiOut.sendMidi(0xbf, CTRL.MIDDLE.PAD_MODE, 0);
+        if(MOD.SHIFT){
+            bitwig.project.createSceneFromPlayingLauncherClips();
+        } else {
+            sections.pads.setSceneMode();
+            midiOut.sendMidi(0xbf, CTRL.MIDDLE.PATTERN, 0);
+            midiOut.sendMidi(0xbf, CTRL.MIDDLE.PAD_MODE, 0);
+        }
     } else if(data1 == CTRL.MIDDLE.PATTERN) {
         sections.pads.setPatternMode();
         midiOut.sendMidi(0xbf, CTRL.MIDDLE.SCENE, 0);

@@ -18,6 +18,18 @@ var PadsSection = function(){
 
 };
 
+PadsSection.prototype.setMode = function(mode) {
+    if(mode == this.SCENE_MODE){
+        this.setSceneMode();
+    } else if(mode == this.PATTERN_MODE){
+        this.setPatternMode();
+    } else if(mode == this.PAD_MODE){
+        this.setPadMode();
+    } else if(mode == this.SHIFT_MODE){
+        this.setShiftMode();
+    }
+};
+
 PadsSection.prototype.handles = function(status, data1, data2) {
     return isInArray(getCcList(CTRL.PADS), data1);
 };
@@ -84,7 +96,7 @@ PadsSection.prototype.initSceneMode = function() {
             });
         })();
     }
-}
+};
 
 PadsSection.prototype.setSceneMode = function() {
     padNotes.setKeyTranslationTable(padMIDITable.OFF);
@@ -97,14 +109,14 @@ PadsSection.prototype.setSceneMode = function() {
     var scenes = bitwig.trackbankPage.scenes;
     for (var i = 0; i < CONFIG.PAD_COUNT; i++) {
         this.sendPadColor(i, scenes[i].getColor());
-    };
-}
+    }
+};
 
 PadsSection.prototype.sceneModeOnMidi = function(status, data1, data2, pressed) {
     var sceneIndex = CTRL.PADS.indexOf(data1);
     var scene = bitwig.scenebank.getScene(sceneIndex);
     if(pressed) scene.launch();
-}
+};
 
 
 
@@ -170,9 +182,10 @@ PadsSection.prototype.initPatternMode = function() {
             trackClipSlots.addIsRecordingQueuedObserver(function(index, isRecordingQueued){
                 if(!that.isPatternMode()) return;
 
-                if(trackIndex == bitwig.trackbankPage.selectedTrackIndex){
+                if(isRecordingQueued && trackIndex == bitwig.trackbankPage.selectedTrackIndex){
                     var clip = track.clips[index];
-                    that.sendPadColor(index, clip.getColor());
+                    // that.sendPadColor(index, clip.getColor());
+                    that.pulsePad(clip, index);
                 }
             });
 
@@ -201,11 +214,11 @@ PadsSection.prototype.setPatternMode = function() {
         var clips = bitwig.trackbankPage.tracks[trackIndex].clips;
         for (var i = 0; i < CONFIG.PAD_COUNT; i++) {
             this.sendPadColor(i, clips[i].getColor());
-        };
+        }
     } else {
         for (var i = 0; i < CONFIG.PAD_COUNT; i++) {
             this.sendPadColor(i, {h:0, s:0, b:0});
-        };
+        }
     }
 };
 
@@ -262,19 +275,18 @@ PadsSection.prototype.initPadMode = function() {
                 if(!that.isPadMode()) return;
 
                 var color = track.getColor();
-                println(trackIndex + ' ' + color.b);
                 color.b = CONFIG.DIM_VALUE;
 
-                for (var i = 0; i < CONFIG.PAD_COUNT; i++) {
+                for (var ii = 0; ii < CONFIG.PAD_COUNT; ii++) {
                     if(isSelected){
-                        for (var i = 0; i < CONFIG.PAD_COUNT; i++) {
-                            that.sendPadColor(i, color);
-                        };
-                    } else if(!isSelected && bitwig.trackbankPage.selectedTrackIndex == null){
+                        for (var iii = 0; iii < CONFIG.PAD_COUNT; iii++) {
+                            that.sendPadColor(iii, color);
+                        }
+                    } else if(!isSelected && bitwig.trackbankPage.selectedTrackIndex === null){
                         // blank pads if nothing is selected
-                        for (var i = 0; i < CONFIG.PAD_COUNT; i++) {
-                            that.sendPadColor(i, {h:0, s:0, b:0});
-                        };
+                        for (var iii = 0; iii < CONFIG.PAD_COUNT; iii++) {
+                            that.sendPadColor(iii, {h:0, s:0, b:0});
+                        }
                     }
                 }
             });
@@ -290,8 +302,7 @@ PadsSection.prototype.initPadMode = function() {
                     color.b = 127;
                     that.sendPadColor(padIndex, color);
                     host.scheduleTask(function(){
-                        if(trackIndex == bitwig.trackbankPage.selectedTrackIndex
-                           && that.mode == that.PAD_MODE){
+                        if(trackIndex == bitwig.trackbankPage.selectedTrackIndex && that.mode == that.PAD_MODE){
                             color.b = CONFIG.DIM_VALUE;
                             that.sendPadColor(padIndex, color);
                         }
@@ -312,17 +323,17 @@ PadsSection.prototype.setPadMode = function() {
 
     var trackIndex = bitwig.trackbankPage.selectedTrackIndex;
 
-    if(trackIndex != null){
+    if(trackIndex !== null){
         var track = bitwig.trackbankPage.tracks[trackIndex];
         var color = track.getColor();
         color.b = CONFIG.DIM_VALUE;
         for (var i = 0; i < CONFIG.PAD_COUNT; i++) {
             this.sendPadColor(i, color);
-        };
+        }
     } else {
         for (var i = 0; i < CONFIG.PAD_COUNT; i++) {
             this.sendPadColor(i, {h:0, s:0, b:0});
-        };
+        }
     }
 
 };
@@ -339,7 +350,7 @@ PadsSection.prototype.padModeOnMidi = function(status, data1, data2, pressed) {
         color.b = CONFIG.DIM_VALUE;
         this.sendPadColor(padIndex, color);
     }
-}
+};
 
 
 
@@ -356,12 +367,47 @@ PadsSection.prototype.setShiftMode = function() {
     padNotes.setKeyTranslationTable(padMIDITable.OFF);
 
     this.prevMode = this.mode;
-    this.mode = this.PAD_MODE;
+    this.mode = this.SHIFT_MODE;
 };
 
 PadsSection.prototype.shiftModeOnMidi = function(status, data1, data2, pressed) {
+    if(!pressed) return;
+    var padIndex = CTRL.PADS.indexOf(data1);
 
-}
+    if(padIndex == 0){ // UNDO
+        bitwig.application.undo();
+    } else if(padIndex == 1){ // REDO
+        bitwig.application.redo();
+    } else if(padIndex == 2){ // STEP UNDO
+
+    } else if(padIndex == 3){ // STEP REDO
+
+    } else if(padIndex == 4){ // QUANTIZE
+
+    } else if(padIndex == 5){ // QUANT 50%
+
+    } else if(padIndex == 6){ // NUDGE <
+
+    } else if(padIndex == 7){ // NUDGE >
+
+    } else if(padIndex == 8){ // CLEAR
+
+    } else if(padIndex == 9){ // CLR AUTO
+
+    } else if(padIndex == 10){ // COPY
+
+    } else if(padIndex == 11){ // PASTE
+
+    } else if(padIndex == 12){ // SEMITONE -
+
+    } else if(padIndex == 13){ // SEMITONE +
+
+    } else if(padIndex == 14){ // OCTAVE -
+
+    } else if(padIndex == 15){ // OCTAVE +
+
+    }
+};
 
 
 
@@ -369,25 +415,47 @@ PadsSection.prototype.shiftModeOnMidi = function(status, data1, data2, pressed) 
 ////////////////////
 // HELPER FUNCTIONS
 
-
 PadsSection.prototype.sendPadColor = function(index, hsb) {
-    midiOut.sendMidi(0x90, CTRL.PADS[index], hsb['h']);
-    midiOut.sendMidi(0x91, CTRL.PADS[index], hsb['s']);
-    midiOut.sendMidi(0x92, CTRL.PADS[index], hsb['b']);
+    midiOut.sendMidi(0x90, CTRL.PADS[index], hsb.h);
+    midiOut.sendMidi(0x91, CTRL.PADS[index], hsb.s);
+    midiOut.sendMidi(0x92, CTRL.PADS[index], hsb.b);
 };
 
 PadsSection.prototype.isSceneMode = function(mode) {
     return this.mode == this.SCENE_MODE;
-}
+};
 
 PadsSection.prototype.isPatternMode = function(mode) {
     return this.mode == this.PATTERN_MODE;
-}
+};
 
 PadsSection.prototype.isPadMode = function(mode) {
     return this.mode == this.PAD_MODE;
-}
+};
 
 PadsSection.prototype.isShiftMode = function(mode) {
     return this.mode == this.PATTERN_MODE;
-}
+};
+
+PadsSection.prototype.pulsePad = function(clip, padIndex) {
+    var that = this;
+    clip.pulseValue = true;
+
+    function pulse(){
+        var color = clip.getColor();
+        if(clip.isRecordingQueued || clip.isRecording){
+            host.scheduleTask(pulse, null, 150);
+            if(clip.pulseValue){
+                color.b = 127;
+                that.sendPadColor(padIndex, color);
+                clip.pulseValue = false;
+            } else {
+                color.b = 0;
+                that.sendPadColor(padIndex, color);
+                clip.pulseValue = true;
+            }
+        }
+    }
+
+    pulse();
+};
