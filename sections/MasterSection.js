@@ -10,5 +10,9 @@ MasterSection.prototype.onMidi = function(status, data1, data2) {
 
     if (data1 == CTRL.MASTER.NOTE_REPEAT && pressed) {
         bitwig.transport.tapTempo();
+    } else if (data1 == CTRL.MASTER.LEFT && pressed) {
+        bitwig.trackbank.scrollChannelsPageUp();
+    } else if (data1 == CTRL.MASTER.RIGHT && pressed) {
+        bitwig.trackbank.scrollChannelsPageDown();
     }
 };

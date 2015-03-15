@@ -4,11 +4,12 @@ maschine-mk2-bitwig
 **NOT YET FULLY IMPLEMENTED.**
 
 ## GLOBAL CONTROLS (Some Exceptions)
-- [ ] GRID            : Shift Modifier
+- [x] GRID            : Shift Modifier
 - [ ] GROUPS          : Relative track
     - [x] dimmed track color
     - [x] full brightness on selected
-    - [ ] desaturate on tracks midi note on events
+    - [x] desaturate on tracks midi note on events
+    - [ ] figure out paging workflow
 - [x] DUPLICATE+GROUP : DUPLICATE Track `[BUG]`
 - [ ] SELECT+GROUP    : SELECT Track
 - [ ] MUTE+GROUP      : MUTE Track

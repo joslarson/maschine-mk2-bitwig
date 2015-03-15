@@ -7,7 +7,7 @@ var Clip = function() {
     this.isSelected = false;
 
     this.hsb = {h: 0, s: 0, b: 0};
-}
+};
 
 Clip.prototype.getColor = function() {
     var hsb = this.hsb;

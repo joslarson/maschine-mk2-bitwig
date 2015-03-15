@@ -2,6 +2,8 @@ var Track = function() {
     this.type = 'unassigned';
     this.exists = false;
     this.isActive = true;
+    this.isSoloed = false;
+    this.isMuted = false;
     this.isSelected = false;
 
     this.hsb = {h: 0, s: 0, b: 0};

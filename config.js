@@ -66,6 +66,7 @@ const CTRL = {
 
 const CONFIG = {
     DIM_VALUE: 20,
+    EXTRA_DIM_VALUE: 10,
     GROUP_COUNT: 8,
     PAD_COUNT: 16,
 };

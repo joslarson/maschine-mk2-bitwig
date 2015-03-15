@@ -28,14 +28,16 @@ var GroupsSection = function(){
                     var orig_b = color.b;
                     color.s = color.s - parseInt(color.s / 6);
                     if(trackIndex != bitwig.trackbankPage.selectedTrackIndex){
-                        color.b = CONFIG.DIM_VALUE + parseInt((127 - CONFIG.DIM_VALUE) / 4);
+                        color.b = CONFIG.DIM_VALUE + parseInt((127 - CONFIG.DIM_VALUE) / 3);
+                    } else {
+                        color.b = 127 - parseInt((127 - CONFIG.DIM_VALUE) / 4);
                     }
                     that.sendGroupColor(trackIndex, color);
                     host.scheduleTask(function(){
                         color.s = orig_s;
                         color.b = orig_b;
                         that.sendGroupColor(trackIndex, color);
-                    }, null, 80);
+                    }, null, 40);
                 }
             });
 
@@ -46,7 +48,9 @@ var GroupsSection = function(){
                     // color.s = color.s > 60 ? color.s - range : color.s + range;
                     color.s = color.s - parseInt((color.s / 2) * (range / 127));
                     if(trackIndex != bitwig.trackbankPage.selectedTrackIndex){
-                        color.b = CONFIG.DIM_VALUE + parseInt(((127 - CONFIG.DIM_VALUE) / 1.5) * (range / 127));
+                        color.b = CONFIG.DIM_VALUE + parseInt(((127 - CONFIG.DIM_VALUE)) * (range / 127));
+                    } else {
+                        color.b = 127 - parseInt(((127 - CONFIG.DIM_VALUE)) * (range / 127));
                     }
                     that.sendGroupColor(trackIndex, color);
                 }

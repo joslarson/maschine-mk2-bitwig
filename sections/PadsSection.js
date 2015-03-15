@@ -8,7 +8,7 @@ var PadsSection = function(){
     this.mode;
     this.prevMode;
 
-    this.setPadMode();
+    this.setMode(this.PATTERN_MODE);
 
     // Init modes, setup observers, etc
     this.initSceneMode();
@@ -337,17 +337,17 @@ PadsSection.prototype.setPadMode = function() {
 };
 
 PadsSection.prototype.padModeOnMidi = function(status, data1, data2, pressed) {
-    var track = bitwig.trackbankPage.tracks[bitwig.trackbankPage.selectedTrackIndex];
-    var padIndex = CTRL.PADS.indexOf(data1);
-    var color = track.getColor();
+    // var track = bitwig.trackbankPage.tracks[bitwig.trackbankPage.selectedTrackIndex];
+    // var padIndex = CTRL.PADS.indexOf(data1);
+    // var color = track.getColor();
 
-    if(pressed){
-        color.b = 127;
-        this.sendPadColor(padIndex, color);
-    } else {
-        color.b = CONFIG.DIM_VALUE;
-        this.sendPadColor(padIndex, color);
-    }
+    // if(pressed){
+    //     color.b = 127;
+    //     this.sendPadColor(padIndex, color);
+    // } else {
+    //     color.b = CONFIG.DIM_VALUE;
+    //     this.sendPadColor(padIndex, color);
+    // }
 };
 
 
@@ -393,9 +393,9 @@ PadsSection.prototype.shiftModeOnMidi = function(status, data1, data2, pressed) 
     } else if(padIndex == 9){ // CLR AUTO
 
     } else if(padIndex == 10){ // COPY
-
+        bitwig.application.copy();
     } else if(padIndex == 11){ // PASTE
-
+        bitwig.application.paste();
     } else if(padIndex == 12){ // SEMITONE -
 
     } else if(padIndex == 13){ // SEMITONE +

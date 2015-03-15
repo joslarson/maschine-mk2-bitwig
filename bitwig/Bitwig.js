@@ -44,7 +44,7 @@ var Bitwig = function(){
  
     for (var i = 0; i < CONFIG.GROUP_COUNT; i++) {
         // init track list
-        if(that.trackbankPage.tracks[i] == undefined){
+        if(that.trackbankPage.tracks[i] === undefined){
             that.trackbankPage.tracks[i] = new Track();
         }
 
