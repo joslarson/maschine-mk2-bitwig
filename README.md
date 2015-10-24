@@ -1,7 +1,9 @@
-maschine-mk2-bitwig
+maschine-bitwig
 ====================
 
-**NOT YET FULLY IMPLEMENTED.**
+My goal is to create a Bitwig controller script for the Native Instruments Maschine mk2 and studio that mimics the excellent work flow of Maschine.
+
+**NOT YET FULLY IMPLEMENTED (I wouldn't even call it an alpha yet).**
 
 ## GLOBAL CONTROLS (Some Exceptions)
 - [x] GRID            : Shift Modifier
@@ -65,3 +67,12 @@ Idea: BROWSE could be device mode where you navigate through devices using the p
 - PADS          : Step sequencer, colors fade based on velocity
 - SELECT+PADS   : Choose drum pad to step sequence
 - SELECT+GROUPS : Choose relative track (+SHIFT : track page)
+
+
+## MISC
+
+keep track of the current value of all hardware controls and make a function that takes in a list control states that must be true to return true.
+
+for midi events that lightup pads if another event fires before it's time to send the off event, cancel the off event and keep it lit
+
+figure out how to speed up lighting events (can I send multiple notes at once?)
