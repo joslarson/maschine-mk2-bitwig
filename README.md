@@ -3,6 +3,8 @@ maschine-mk2-bitwig
 
 **NOT YET FULLY IMPLEMENTED.**
 
+I now own a maschine studio, so while I plan to support the mk2 as well, my main focus will be on implementing functionality on the maschine studio. I'm beginning work on the studio-port branch, but will likely move this to its own repo eventually (which I will link here when/if I do).
+
 ## GLOBAL CONTROLS (Some Exceptions)
 - [x] GRID            : Shift Modifier
 - [ ] GROUPS          : Relative track
