@@ -4,7 +4,7 @@ var Bitwig = function(){
     this.application = host.createApplication();
     this.project = host.getProject();
     this.transport = host.createTransport();
-    this.trackbank = host.createMainTrackBank(CONFIG.GROUP_COUNT,0,CONFIG.PAD_COUNT);
+    this.trackbank = this.project.getShownTopLevelTrackGroup().createMainTrackBank(CONFIG.GROUP_COUNT,0,CONFIG.PAD_COUNT, false);
     this.scenebank = host.createSceneBank(CONFIG.PAD_COUNT);
     
     this.totalTrackCount = 0;
@@ -23,7 +23,8 @@ var Bitwig = function(){
     // initialize bitwig object
 
     this.transport.getTempo().addRawValueObserver(function(tempo){
-        // println(tempo);
+        that.tempo = tempo;
+        println(tempo);
     });
 
     this.trackbank.addChannelScrollPositionObserver(function(position){
@@ -55,6 +56,10 @@ var Bitwig = function(){
 
             that.trackbank.getChannel(trackIndex).addTrackTypeObserver(25, 'Unassigned', function(type){
                 track.type = type; // Unassigned, Instrument, Audio, or Hybrid
+            });
+
+            that.trackbank.getChannel(trackIndex).addIsGroupObserver(function(isGroup){
+                track.isGroup = isGroup;
             });
 
             that.trackbank.getChannel(trackIndex).addIsSelectedInMixerObserver(

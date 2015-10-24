@@ -15,6 +15,14 @@ var GroupsSection = function(){
             var track = bitwig.trackbankPage.tracks[trackIndex];
             bitwig.trackbank.getChannel(trackIndex).addIsSelectedInMixerObserver(function(isSelected){
                 that.sendGroupColor(trackIndex, track.getColor());
+                if(isSelected){
+                    if(track.isGroup){
+                        println('Group');
+                    } else {
+                        println(track.type);
+                    }
+
+                }
             });
             
             bitwig.trackbank.getChannel(trackIndex).addColorObserver(function(r, g, b){
@@ -42,7 +50,7 @@ var GroupsSection = function(){
             });
 
             bitwig.trackbank.getChannel(trackIndex).addVuMeterObserver(128, -1, false, function(range){
-                if(track.type == 'Audio'){
+                if(track.type == 'Audio' || track.isGroup){
                     var color = track.getColor();
                     range = range < 25 ? 0 : range - 25;
                     // color.s = color.s > 60 ? color.s - range : color.s + range;

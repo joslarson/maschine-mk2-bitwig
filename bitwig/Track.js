@@ -1,5 +1,6 @@
 var Track = function() {
-    this.type = 'unassigned';
+    this.type = 'Unassigned';
+    this.isGroup = true;
     this.exists = false;
     this.isActive = true;
     this.isSoloed = false;

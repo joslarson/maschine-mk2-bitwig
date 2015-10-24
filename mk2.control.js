@@ -43,11 +43,8 @@ function onMidi(status, data1, data2) {
 }
 
 function init() {
-    bitwig = new Bitwig();
+    // connect midi i/o
     midiOut = host.getMidiOutPort(0);
-
-    blankController();
-
     padNotes = host.getMidiInPort(0).createNoteInput("Maschine Pads", "89????", "99????", "B940??", "D9????", "E9????");
     padNotes.setShouldConsumeEvents(false);
     padMIDITable = {
@@ -55,7 +52,11 @@ function init() {
         OFF: initArray(-1,128)
     };
     host.getMidiInPort(0).setMidiCallback(onMidi);
-
+    
+    // init bitwig object to track application state
+    bitwig = new Bitwig();
+    
+    // init controller logic
     sections.transport = new TransportSection();
     sections.groups = new GroupsSection();
     sections.screens = new ScreensSection();
@@ -63,6 +64,7 @@ function init() {
     sections.pads = new PadsSection();
     sections.middle = new MiddleSection();
 
+    blankController();
     println("Maschine MK2 script");
 }
 
