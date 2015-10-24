@@ -269,7 +269,6 @@ const STUDIO_CTRL_MAP = {
             {ch:11, cc: 117},
         ],
     },
-
 };
 
 const CONFIG = {

@@ -723,7 +723,7 @@
       </button>
     </controls>
     <knob>
-      <current_index>1</current_index>
+      <current_index>0</current_index>
       <knob colorColumn1-index="0" colorColumn1B-index="0" colorColumn2-index="1" colorColumn2B-index="1" colorColumn3-index="3" colorColumn3B-index="3" colorColumn4-index="6" colorColumn4B-index="6" colorColumn5-index="7" colorColumn5B-index="7" colorColumn6-index="9" colorColumn6B-index="9" colorColumn7-index="11" colorColumn7B-index="11" colorColumn8-index="15" colorColumn8B-index="15" explicitMCU="0" name="TRACK ARM &amp; VOL">
         <button id="Button1" version="1">
           <name>    ARM      |  A</name>
@@ -1016,6 +1016,460 @@
         </button>
         <button id="Button8" version="1">
           <name>    ARM      |  H</name>
+          <controller>28</controller>
+          <channel>7</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior>gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="ButtonKnobCap1" version="1">
+          <controller>102</controller>
+          <channel>8</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior onIfDown="on">gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="ButtonKnobCap2" version="1">
+          <controller>104</controller>
+          <channel>8</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior onIfDown="on">gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="ButtonKnobCap3" version="1">
+          <controller>106</controller>
+          <channel>8</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior onIfDown="on">gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="ButtonKnobCap4" version="1">
+          <controller>108</controller>
+          <channel>8</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior onIfDown="on">gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="ButtonKnobCap5" version="1">
+          <controller>110</controller>
+          <channel>8</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior onIfDown="on">gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="ButtonKnobCap6" version="1">
+          <controller>112</controller>
+          <channel>8</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior onIfDown="on">gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="ButtonKnobCap7" version="1">
+          <controller>114</controller>
+          <channel>8</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior onIfDown="on">gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="ButtonKnobCap8" version="1">
+          <controller>116</controller>
+          <channel>8</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior onIfDown="on">gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <knob id="EncoderKnob1" version="1">
+          <name>PAN       A </name>
+          <controller>103</controller>
+          <channel>8</channel>
+          <min>0</min>
+          <max>127</max>
+          <default>64</default>
+          <range>360</range>
+          <steps>20</steps>
+          <bipolar>on</bipolar>
+        </knob>
+        <knob id="EncoderKnob2" version="1">
+          <name>PAN       B </name>
+          <controller>105</controller>
+          <channel>8</channel>
+          <min>0</min>
+          <max>127</max>
+          <default>64</default>
+          <range>360</range>
+          <steps>20</steps>
+          <bipolar>on</bipolar>
+        </knob>
+        <knob id="EncoderKnob3" version="1">
+          <name>PAN       C </name>
+          <controller>107</controller>
+          <channel>8</channel>
+          <min>0</min>
+          <max>127</max>
+          <default>64</default>
+          <range>360</range>
+          <steps>20</steps>
+          <bipolar>on</bipolar>
+        </knob>
+        <knob id="EncoderKnob4" version="1">
+          <name>PAN       D </name>
+          <controller>109</controller>
+          <channel>8</channel>
+          <min>0</min>
+          <max>127</max>
+          <default>64</default>
+          <range>360</range>
+          <steps>20</steps>
+          <bipolar>on</bipolar>
+        </knob>
+        <knob id="EncoderKnob5" version="1">
+          <name>PAN      E </name>
+          <controller>111</controller>
+          <channel>8</channel>
+          <min>0</min>
+          <max>127</max>
+          <default>64</default>
+          <range>360</range>
+          <steps>20</steps>
+          <bipolar>on</bipolar>
+        </knob>
+        <knob id="EncoderKnob6" version="1">
+          <name>PAN      F </name>
+          <controller>113</controller>
+          <channel>8</channel>
+          <min>0</min>
+          <max>127</max>
+          <default>64</default>
+          <range>360</range>
+          <steps>20</steps>
+          <bipolar>on</bipolar>
+        </knob>
+        <knob id="EncoderKnob7" version="1">
+          <name>PAN      G </name>
+          <controller>115</controller>
+          <channel>8</channel>
+          <min>0</min>
+          <max>127</max>
+          <default>64</default>
+          <range>360</range>
+          <steps>20</steps>
+          <bipolar>on</bipolar>
+        </knob>
+        <knob id="EncoderKnob8" version="1">
+          <name>PAN      H </name>
+          <controller>117</controller>
+          <channel>8</channel>
+          <min>0</min>
+          <max>127</max>
+          <default>64</default>
+          <range>360</range>
+          <steps>20</steps>
+          <bipolar>on</bipolar>
+        </knob>
+      </knob>
+      <knob colorColumn1-index="0" colorColumn1B-index="0" colorColumn2-index="1" colorColumn2B-index="1" colorColumn3-index="3" colorColumn3B-index="3" colorColumn4-index="6" colorColumn4B-index="6" colorColumn5-index="7" colorColumn5B-index="7" colorColumn6-index="9" colorColumn6B-index="9" colorColumn7-index="11" colorColumn7B-index="11" colorColumn8-index="15" colorColumn8B-index="15" explicitMCU="0" name="DEVICE MACROS">
+        <button id="Button1" version="1">
+          <name>    ARM      |  A</name>
+          <controller>21</controller>
+          <channel>7</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior>gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="Button2" version="1">
+          <name>    ARM      |  B</name>
+          <controller>22</controller>
+          <channel>7</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior>gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="Button3" version="1">
+          <name>    ARM      |  C</name>
+          <controller>23</controller>
+          <channel>7</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior>gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="Button4" version="1">
+          <name>    ARM      |  D</name>
+          <controller>24</controller>
+          <channel>7</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior>gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="Button5" version="1">
+          <name>    ARM      |  E</name>
+          <controller>25</controller>
+          <channel>7</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior>gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="Button6" version="1">
+          <name>    ARM      |  F</name>
+          <controller>26</controller>
+          <channel>7</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior>gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="Button7" version="1">
+          <name>    ARM      |  G</name>
+          <controller>27</controller>
+          <channel>7</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior>gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="Button8" version="1">
+          <name>    ARM      |  H</name>
+          <controller>28</controller>
+          <channel>7</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior>gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="ButtonKnobCap1" version="1">
+          <controller>102</controller>
+          <channel>8</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior onIfDown="on">gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="ButtonKnobCap2" version="1">
+          <controller>104</controller>
+          <channel>8</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior onIfDown="on">gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="ButtonKnobCap3" version="1">
+          <controller>106</controller>
+          <channel>8</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior onIfDown="on">gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="ButtonKnobCap4" version="1">
+          <controller>108</controller>
+          <channel>8</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior onIfDown="on">gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="ButtonKnobCap5" version="1">
+          <controller>110</controller>
+          <channel>8</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior onIfDown="on">gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="ButtonKnobCap6" version="1">
+          <controller>112</controller>
+          <channel>8</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior onIfDown="on">gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="ButtonKnobCap7" version="1">
+          <controller>114</controller>
+          <channel>8</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior onIfDown="on">gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="ButtonKnobCap8" version="1">
+          <controller>116</controller>
+          <channel>8</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior onIfDown="on">gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <knob id="EncoderKnob1" version="1">
+          <name>PAN       A </name>
+          <controller>103</controller>
+          <channel>8</channel>
+          <min>0</min>
+          <max>127</max>
+          <default>0</default>
+          <range>360</range>
+          <steps>20</steps>
+          <bipolar>off</bipolar>
+        </knob>
+        <knob id="EncoderKnob2" version="1">
+          <name>PAN       B </name>
+          <controller>105</controller>
+          <channel>8</channel>
+          <min>0</min>
+          <max>127</max>
+          <default>0</default>
+          <range>360</range>
+          <steps>20</steps>
+          <bipolar>off</bipolar>
+        </knob>
+        <knob id="EncoderKnob3" version="1">
+          <name>PAN       C </name>
+          <controller>107</controller>
+          <channel>8</channel>
+          <min>0</min>
+          <max>127</max>
+          <default>0</default>
+          <range>360</range>
+          <steps>20</steps>
+          <bipolar>off</bipolar>
+        </knob>
+        <knob id="EncoderKnob4" version="1">
+          <name>PAN       D </name>
+          <controller>109</controller>
+          <channel>8</channel>
+          <min>0</min>
+          <max>127</max>
+          <default>0</default>
+          <range>360</range>
+          <steps>20</steps>
+          <bipolar>off</bipolar>
+        </knob>
+        <knob id="EncoderKnob5" version="1">
+          <name>PAN      E </name>
+          <controller>111</controller>
+          <channel>8</channel>
+          <min>0</min>
+          <max>127</max>
+          <default>0</default>
+          <range>360</range>
+          <steps>20</steps>
+          <bipolar>off</bipolar>
+        </knob>
+        <knob id="EncoderKnob6" version="1">
+          <name>PAN      F </name>
+          <controller>113</controller>
+          <channel>8</channel>
+          <min>0</min>
+          <max>127</max>
+          <default>0</default>
+          <range>360</range>
+          <steps>20</steps>
+          <bipolar>off</bipolar>
+        </knob>
+        <knob id="EncoderKnob7" version="1">
+          <name>PAN      G </name>
+          <controller>115</controller>
+          <channel>8</channel>
+          <min>0</min>
+          <max>127</max>
+          <default>0</default>
+          <range>360</range>
+          <steps>20</steps>
+          <bipolar>off</bipolar>
+        </knob>
+        <knob id="EncoderKnob8" version="1">
+          <name>PAN      H </name>
+          <controller>117</controller>
+          <channel>8</channel>
+          <min>0</min>
+          <max>127</max>
+          <default>0</default>
+          <range>360</range>
+          <steps>20</steps>
+          <bipolar>off</bipolar>
+        </knob>
+      </knob>
+      <knob colorColumn1-index="0" colorColumn1B-index="0" colorColumn2-index="1" colorColumn2B-index="1" colorColumn3-index="3" colorColumn3B-index="3" colorColumn4-index="6" colorColumn4B-index="6" colorColumn5-index="7" colorColumn5B-index="7" colorColumn6-index="9" colorColumn6B-index="9" colorColumn7-index="11" colorColumn7B-index="11" colorColumn8-index="15" colorColumn8B-index="15" explicitMCU="0" name="DEVICE PARAMS">
+        <button id="Button1" version="1">
+          <name>PREV</name>
+          <controller>21</controller>
+          <channel>7</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior>gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="Button2" version="1">
+          <name>NEXT</name>
+          <controller>22</controller>
+          <channel>7</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior>gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="Button3" version="1">
+          <name>PARENT</name>
+          <controller>23</controller>
+          <channel>7</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior>gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="Button4" version="1">
+          <name>CHILD</name>
+          <controller>24</controller>
+          <channel>7</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior>gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="Button5" version="1">
+          <name>&lt;&lt;   BANK</name>
+          <controller>25</controller>
+          <channel>7</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior>gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="Button6" version="1">
+          <name> </name>
+          <disabled/>
+          <controller>26</controller>
+          <channel>7</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior>gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="Button7" version="1">
+          <name> </name>
+          <disabled/>
+          <controller>27</controller>
+          <channel>7</channel>
+          <off>0</off>
+          <on>127</on>
+          <behavior>gate</behavior>
+          <reaction>ondown</reaction>
+        </button>
+        <button id="Button8" version="1">
+          <name>BANK   &gt;&gt;</name>
           <controller>28</controller>
           <channel>7</channel>
           <off>0</off>
