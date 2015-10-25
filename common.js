@@ -82,3 +82,27 @@ function initCountingArray(startValue, length) {
     }
     return arr;
 }
+
+function all(testArray) {
+    var result = true;
+    for (var i = 0; i < testArray.length; i++) {
+        var test = testArray[i];
+        if(!test) {
+            result = false;
+            break;
+        }
+    };
+    return result;
+};
+
+function any(testArray) {
+    var result = false;
+    for (var i = 0; i < testArray.length; i++) {
+        var test = testArray[i];
+        if(test) {
+            result = true;
+            break;
+        }
+    };
+    return result;
+};
